@@ -24,4 +24,4 @@ let isValidObjectId = function(ObjectId){
 
 
 
-module.exports = {isValidRequestBody,validString ,isValid , isValidAge, isValidObjectId}
+module.exports = {isValidRequestBody, validString, isValid, isValidObjectId}
