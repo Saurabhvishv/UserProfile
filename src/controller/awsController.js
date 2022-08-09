@@ -4,27 +4,26 @@ aws.config.update({
     secretAccessKey: "qGG1HE0qRixcW1T1Wg1bv+08tQrIkFVyDFqSft4J",
     region: "ap-south-1"
 });
-// this function uploads file to AWS and gives back the url for the file
+
 let uploadFile = async (file) => {
-    return new Promise(function (resolve, reject) { // exactly 
+    return new Promise(function (resolve, reject) { 
 
         // Create S3 service object
         let s3 = new aws.S3({ apiVersion: "2006-03-01" });
         var uploadParams = {
-            ACL: "public-read", // this file is publically readable
-            Bucket: "classroom-training-bucket", // HERE
-            Key: "CD_newFolder/" + file.originalname, // HERE    "pk_newFolder/harry-potter.png" pk_newFolder/harry-potter.png
+            ACL: "public-read", 
+            Bucket: "classroom-training-bucket", 
+            Key: "CD_newFolder/" + file.originalname,
             Body: file.buffer,
         };
 
-        // Callback - function provided as the second parameter ( most oftenly)
         s3.upload(uploadParams, function (err, data) {
             if (err) {
                 return reject({ "error": err });
             }
 
             console.log(`File uploaded successfully. ${data.Location}`);
-            return resolve(data.Location); //HERE 
+            return resolve(data.Location); 
         });
     });
 };
